@@ -1,0 +1,23 @@
+#
+# This file is config.txt that will be used for configuring
+# the tweetie application.
+#
+# Note: Comment in this file starts with #
+#       That is beginning of a line with # treats whole line as comment.
+#
+
+#
+# Required Variables:
+#   TWITTER_DUMP    : Path of the twitter dump
+#
+#   CREATE_INDEX    : Boolean value in quotes to specify if there is a need to create index
+#                     Possible values: "true","false"
+#
+#
+
+#TWITTER_DUMP=/media/devilo/TeChIe/Web Mining/Monsoon 2014/Assignments/tweets_2014_07_31_00.txt
+TWITTER_DUMP=/media/devilo/TeChIe/Web Mining/Monsoon 2014/Assignments/tweets10.txt
+
+CREATE_INDEX=true
+
+INDEX_LOC=/media/devilo/TeChIe/Web Mining/Monsoon 2014/Assignments/index
