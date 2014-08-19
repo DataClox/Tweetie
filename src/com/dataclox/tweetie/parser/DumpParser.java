@@ -20,8 +20,6 @@ public class DumpParser {
 
         TweetProcessor tweetProcessor = new TweetProcessor(indexFolder, dumpFile);
 
-        //BufferedReader dumpReader = new BufferedReader(new InputStreamReader(new FileInputStream(dumpFile), "UTF-8"));
-
         BufferedReader dumpReader = new BufferedReader(new FileReader(dumpFile));
 
         while((tweet = dumpReader.readLine()) != null) {
