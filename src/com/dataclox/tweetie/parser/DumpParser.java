@@ -2,10 +2,7 @@ package com.dataclox.tweetie.parser;
 
 import com.dataclox.tweetie.config.IndexConfig;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 
 /**
  * Created by devilo on 16/8/14.
@@ -20,14 +17,23 @@ public class DumpParser {
         validate();
 
         String tweet = null;
+
+        TweetProcessor tweetProcessor = new TweetProcessor(indexFolder, dumpFile);
+
+        //BufferedReader dumpReader = new BufferedReader(new InputStreamReader(new FileInputStream(dumpFile), "UTF-8"));
+
         BufferedReader dumpReader = new BufferedReader(new FileReader(dumpFile));
 
         while((tweet = dumpReader.readLine()) != null) {
 
-            System.out.println(tweet);
+            String processedTweet = tweet.trim();
+            if( processedTweet.length() > 0 )
+                tweetProcessor.process(processedTweet);
 
         }
 
+        dumpReader.close();
+        tweetProcessor.finish();
 
     }
 
@@ -48,9 +54,9 @@ public class DumpParser {
             throw new IOException();
         }
 
-        indexFolder.mkdir();
+        boolean isDirectoryCreated = indexFolder.mkdir();
 
-        if( !new File(IndexConfig.indexLoc).isDirectory() ) {
+        if( isDirectoryCreated == false ) {
             System.err.println("Something went wrong with directory creation; please check INDEX_LOC once again.");
             throw new IOException();
         }

@@ -24,6 +24,7 @@ public class Tweetie {
         System.out.println("TWITTER_DUMP = " + IndexConfig.twitterDumpPath);
         System.out.println("INDEX_LOC = " + IndexConfig.indexLoc);
         System.out.println("CREATE_INDEX = " + IndexConfig.createIndex);
+        System.out.println("USE_INTERMEDIATE_INDEX = " + IndexConfig.useIntermediateIndex);
 
         if( IndexConfig.createIndex == true ) {
             DumpParser dumpParser = new DumpParser();
@@ -36,6 +37,9 @@ public class Tweetie {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+
+        }
+        else if( IndexConfig.useIntermediateIndex == true ) {
 
         }
         else {

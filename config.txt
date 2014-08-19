@@ -15,9 +15,12 @@
 #
 #
 
-#TWITTER_DUMP=/media/devilo/TeChIe/Web Mining/Monsoon 2014/Assignments/tweets_2014_07_31_00.txt
-TWITTER_DUMP=/media/devilo/TeChIe/Web Mining/Monsoon 2014/Assignments/tweets10.txt
+TWITTER_DUMP=/media/devilo/TeChIe/Web Mining/Monsoon 2014/Assignments/tweets_2014_07_31_00.txt
+#TWITTER_DUMP=/media/devilo/TeChIe/Web Mining/Monsoon 2014/Assignments/tweets10.txt
 
-CREATE_INDEX=true
+CREATE_INDEX=false
+USE_INTERMEDIATE_INDEX=true
+
+INTER_DUMP=/media/devilo/TeChIe/Web Mining/Monsoon 2014/Assignments/index/INTER_tweets_2014_07_31_00.txt
 
 INDEX_LOC=/media/devilo/TeChIe/Web Mining/Monsoon 2014/Assignments/index
