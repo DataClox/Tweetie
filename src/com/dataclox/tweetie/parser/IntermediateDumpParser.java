@@ -32,6 +32,8 @@ public class IntermediateDumpParser {
 
         BufferedReader intermediateDumpReader = new BufferedReader(new FileReader(intermediateFile));
 
+        int count = 0;
+
         while((line = intermediateDumpReader.readLine()) != null) {
 
             Tweet t = new Tweet();
@@ -56,9 +58,12 @@ public class IntermediateDumpParser {
 
             line = intermediateDumpReader.readLine();
             tweeStruct.insert(t);
+            count++;
 
         }
 
+        System.out.println("insertion count : " + count);
+        
         intermediateDumpReader.close();
 
     }
