@@ -22,5 +22,6 @@ CREATE_INDEX=false
 USE_INTERMEDIATE_INDEX=true
 
 INTER_DUMP=/media/devilo/TeChIe/Web Mining/Monsoon 2014/Assignments/index/INTER_tweets_2014_07_31_00.txt
+NULL_DUMP=/media/devilo/TeChIe/Web Mining/Monsoon 2014/Assignments/index/NULL_tweets_2014_07_31_00.txt
 
 INDEX_LOC=/media/devilo/TeChIe/Web Mining/Monsoon 2014/Assignments/index

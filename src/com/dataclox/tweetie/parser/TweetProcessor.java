@@ -1,5 +1,6 @@
 package com.dataclox.tweetie.parser;
 
+import com.dataclox.tweetie.config.IndexConfig;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -16,9 +17,11 @@ public class TweetProcessor {
 
     File dumpFile = null;
     File indexFolder = null;
+    File nullFile = null;
     File intermediateFile = null;
 
     BufferedWriter fileWriter = null;
+    BufferedWriter nullWriter = null;
 
     public TweetProcessor(File inFolder, File dFile) {
 
@@ -26,6 +29,8 @@ public class TweetProcessor {
         this.indexFolder = inFolder;
 
         intermediateFile = new File(indexFolder.getAbsolutePath() + File.separator + PREFIX + "_" + dumpFile.getName());
+        nullFile = new File(IndexConfig.nullDump);
+
         System.out.println("Intermediate File : " + intermediateFile.getAbsolutePath());
 
         try {
@@ -34,6 +39,7 @@ public class TweetProcessor {
 
             //fileWriter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(intermediateFile) , "UTF-8"));
             fileWriter = new BufferedWriter(new FileWriter(intermediateFile));
+            nullWriter = new BufferedWriter(new FileWriter(nullFile));
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -59,8 +65,21 @@ public class TweetProcessor {
             tweetId = (String) tweetDataJO.get("IdStr");
             tweetTimestamp = (String) tweetDataJO.get("CreatedAt");
             tweetInReplyToStatusId = (String) tweetDataJO.get("InReplyToStatusIdStr");
-            tweetText = (String) tweetDataJO.get("Text");
+            tweetText = ((String) tweetDataJO.get("Text"));
             tweetUserId = (String) ((JSONObject)tweetDataJO.get("User")).get("IdStr");
+
+            if(tweetText == null) {
+
+                nullWriter.write("$" + tweetId + "\n");
+                nullWriter.write("$" + tweetTimestamp + "\n");
+                nullWriter.write("$" + tweetText + "\n");
+                nullWriter.write("$" + tweetUserId + "\n");
+                nullWriter.write("$" + tweetInReplyToStatusId + "\n");
+                nullWriter.write("$\n");
+                return;
+            }
+
+            tweetText = tweetText.replaceAll("[\\n\\r\\t]" , " ");
 
             fileWriter.write("$" + tweetId + "\n");
             fileWriter.write("$" + tweetTimestamp + "\n");
@@ -81,6 +100,8 @@ public class TweetProcessor {
         if( fileWriter != null )
             fileWriter.close();
 
+        if( nullWriter != null )
+            nullWriter.close();
     }
 
 

@@ -10,6 +10,6 @@ public class IndexConfig {
     public static String indexLoc         = null;
     public static boolean useIntermediateIndex = false;
 
-    /* Will be removed */
     public static String interDump        = null;
+    public static String nullDump         = null;
 }
