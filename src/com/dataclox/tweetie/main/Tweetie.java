@@ -54,8 +54,6 @@ public class Tweetie {
             try {
                 intermediateDumpParser.createTweetMap();
 
-                System.out.println("Total conversations : " + TweeStruct.getInstance().getTweeTree().countConversations());
-
             }
             catch (IOException e) {
                 e.printStackTrace();

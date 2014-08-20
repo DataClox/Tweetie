@@ -1,6 +1,8 @@
 package com.dataclox.tweetie.main;
 
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.TreeMap;
 
 /**
  * Created by devilo on 19/8/14.
@@ -10,12 +12,16 @@ public class TweeStruct {
     /* This is a Singleton class */
 
     private static TweeStruct instance = null;
+
     private HashMap<Long,Tweet> tweetMap = null;
-    private TweeTree tweeTree = null;
+    private TreeMap<Long,Long> parentChildMap = null;
+    private HashSet<Long> roots = null;
 
     protected TweeStruct() {
+
+        roots = new HashSet<Long>();
         tweetMap = new HashMap<Long, Tweet>();
-        tweeTree = new TweeTree();
+        parentChildMap = new TreeMap<Long, Long>();
     }
 
     public static TweeStruct getInstance() {
@@ -27,17 +33,29 @@ public class TweeStruct {
     }
 
     public void insert( Tweet tweet ) {
+
         tweetMap.put(tweet.getTweetId(), tweet);
-        tweeTree.add(tweet.getTweetId() , tweet.getTweetInReplyToStatusId());
-    }
+        parentChildMap.put(tweet.getTweetId(), tweet.getTweetInReplyToStatusId());
 
+        if( tweet.getTweetInReplyToStatusId() == 0 ) {
+            roots.add(tweet.getTweetId());
+        }
 
-    public TweeTree getTweeTree() {
-        return this.tweeTree;
     }
 
     public int getSize() {
         return tweetMap.size();
     }
 
+    public HashMap<Long, Tweet> getTweetMap() {
+        return tweetMap;
+    }
+
+    public TreeMap<Long, Long> getParentChildMap() {
+        return parentChildMap;
+    }
+
+    public HashSet<Long> getRoots() {
+        return roots;
+    }
 }
