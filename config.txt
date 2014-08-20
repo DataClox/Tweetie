@@ -25,3 +25,6 @@ INTER_DUMP=/media/devilo/TeChIe/Web Mining/Monsoon 2014/Assignments/index/INTER_
 NULL_DUMP=/media/devilo/TeChIe/Web Mining/Monsoon 2014/Assignments/index/NULL_tweets_2014_07_31_00.txt
 
 INDEX_LOC=/media/devilo/TeChIe/Web Mining/Monsoon 2014/Assignments/index
+
+#Statistics
+STAT_LOC=/media/devilo/TeChIe/Web Mining/Monsoon 2014/Assignments/stat

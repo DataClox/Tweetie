@@ -10,14 +10,14 @@ public class Tweet {
     String tweetText = null;
     TweetTimeStamp tweetTimestamp = null;
     Long tweetId = null;
-    String tweetUserId = null;
+    Long tweetUserId = null;
     Long tweetInReplyToStatusId = null;
 
     public Tweet() {
 
     }
 
-    public Tweet(String tweetText, TweetTimeStamp tweetTimestamp, Long tweetId, String tweetUserId, Long tweetInReplyToStatusId) {
+    public Tweet(String tweetText, TweetTimeStamp tweetTimestamp, Long tweetId, Long tweetUserId, Long tweetInReplyToStatusId) {
         this.tweetText = tweetText;
         this.tweetTimestamp = tweetTimestamp;
         this.tweetId = tweetId;
@@ -49,11 +49,11 @@ public class Tweet {
         this.tweetId = tweetId;
     }
 
-    public String getTweetUserId() {
+    public Long getTweetUserId() {
         return tweetUserId;
     }
 
-    public void setTweetUserId(String tweetUserId) {
+    public void setTweetUserId(Long tweetUserId) {
         this.tweetUserId = tweetUserId;
     }
 

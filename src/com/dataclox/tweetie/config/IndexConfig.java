@@ -12,4 +12,13 @@ public class IndexConfig {
 
     public static String interDump        = null;
     public static String nullDump         = null;
+
+
+    public static String statLoc          = null;
+    public static String convFilePath     = null;
+    public static String numUsersVsFreqFilePath     = null;
+    public static String convLengthVsFreqFilePath     = null;
+
+
+    public static String minutesVsFreqFilePath  = null;
 }

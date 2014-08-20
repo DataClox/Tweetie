@@ -19,6 +19,8 @@ public class TweeStruct {
     private HashSet<Long> roots = null;
 
     TreeMap<Long, LinkedHashSet<Long>> adjacencyList = null;
+    TreeMap<Long, Long> tweetIdVsUserId = null;
+
 
     protected TweeStruct() {
 
@@ -26,6 +28,8 @@ public class TweeStruct {
         tweetMap = new HashMap<Long, Tweet>();
         parentChildMap = new TreeMap<Long, Long>();
         adjacencyList = new TreeMap<Long, LinkedHashSet<Long>>();
+
+        tweetIdVsUserId = new TreeMap<Long, Long>();
     }
 
     public static TweeStruct getInstance() {
@@ -38,6 +42,7 @@ public class TweeStruct {
 
     public void insert( Tweet tweet ) {
 
+        tweetIdVsUserId.put(tweet.getTweetId(), tweet.getTweetUserId());
         tweetMap.put(tweet.getTweetId(), tweet);
         parentChildMap.put(tweet.getTweetId(), tweet.getTweetInReplyToStatusId());
 
@@ -65,5 +70,9 @@ public class TweeStruct {
 
     public TreeMap<Long, LinkedHashSet<Long>> getAdjacencyList() {
         return adjacencyList;
+    }
+
+    public TreeMap<Long, Long> getTweetIdVsUserId() {
+        return tweetIdVsUserId;
     }
 }

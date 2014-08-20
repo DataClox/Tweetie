@@ -24,6 +24,7 @@ public class IntermediateDumpParser {
 
     public IntermediateDumpParser(String interDump) {
 
+        System.out.println("Inter dump = " + interDump);
         this.intermediateDumpPath = interDump;
         tweeStruct = TweeStruct.getInstance();
         intermediateFile = new File(this.intermediateDumpPath);
@@ -51,7 +52,7 @@ public class IntermediateDumpParser {
             t.setTweetText(line.substring(1));
 
             line = intermediateDumpReader.readLine();
-            t.setTweetUserId(line.substring(1));
+            t.setTweetUserId(new Long(line.substring(1)));
 
             line = intermediateDumpReader.readLine();
 

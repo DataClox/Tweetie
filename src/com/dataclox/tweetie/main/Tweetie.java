@@ -22,7 +22,6 @@ public class Tweetie {
         dumpParser = new DumpParser();
         configParser = new ConfigParser();
         statGenerator = new StatGenerator();
-        intermediateDumpParser = new IntermediateDumpParser(IndexConfig.interDump);
     }
 
     public void start() {
@@ -56,6 +55,7 @@ public class Tweetie {
         }
         else if( IndexConfig.useIntermediateIndex == true ) {
 
+            intermediateDumpParser = new IntermediateDumpParser(IndexConfig.interDump);
             System.out.println("Using intermediate file : " + IndexConfig.interDump);
 
             try {
@@ -64,6 +64,13 @@ public class Tweetie {
                 System.out.println("Total roots : " + TweeStruct.getInstance().getAdjacencyList().keySet().size());
 
                 statGenerator.generateConversations();
+                statGenerator.generateNumOfDistinctUsersVsFreq();
+                statGenerator.generateConversationLengthVsFreq();
+                statGenerator.generateMinutesVsFreq();
+
+
+                statGenerator.dumpTweets();
+
 
             }
             catch (IOException e) {

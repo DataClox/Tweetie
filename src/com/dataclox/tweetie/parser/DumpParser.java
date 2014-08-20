@@ -35,7 +35,7 @@ public class DumpParser {
 
     }
 
-    private void validate() throws NullPointerException, IOException {
+    private void validate() throws IOException {
 
         if(IndexConfig.indexLoc == null )
             throw new NullPointerException();

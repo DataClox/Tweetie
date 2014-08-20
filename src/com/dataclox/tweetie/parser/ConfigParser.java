@@ -50,6 +50,9 @@ public class ConfigParser {
             else if( keyValue[0].equalsIgnoreCase("NULL_DUMP") ) {
                 IndexConfig.nullDump = keyValue[1];
             }
+            else if( keyValue[0].equalsIgnoreCase("STAT_LOC") ) {
+                IndexConfig.statLoc = keyValue[1];
+            }
             else {
                 System.err.println("Invalid Key found : " + keyValue[0]);
                 throw new IllegalArgumentException();
