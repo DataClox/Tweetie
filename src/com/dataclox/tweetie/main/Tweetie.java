@@ -6,6 +6,7 @@ import com.dataclox.tweetie.parser.DumpParser;
 import com.dataclox.tweetie.parser.IntermediateDumpParser;
 
 import java.io.IOException;
+import java.text.ParseException;
 
 /**
  * Created by devilo on 16/8/14.
@@ -74,6 +75,9 @@ public class Tweetie {
 
             }
             catch (IOException e) {
+                e.printStackTrace();
+            }
+            catch (ParseException e) {
                 e.printStackTrace();
             }
 

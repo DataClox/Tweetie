@@ -67,7 +67,7 @@ public class StatGenerator {
                 }
             }
 
-            long minutes = 0;
+            long minutes = (tweetMap.get(maxId).getTweetTimestamp().getTime() - tweetMap.get(minId).getTweetTimestamp().getTime())/6000;
 
             if( !minutesVsFrequency.containsKey(minutes) )
                 minutesVsFrequency.put(minutes, 1L);

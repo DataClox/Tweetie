@@ -8,10 +8,9 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.LinkedHashSet;
-import java.util.TreeMap;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 /**
  * Created by devilo on 19/8/14.
@@ -31,7 +30,10 @@ public class IntermediateDumpParser {
     }
 
 
-    public void createTweetStruct() throws IOException {
+    public void createTweetStruct() throws ParseException,IOException {
+
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("EEE MMM dd HH:mm:ss Z yyyy");
+        simpleDateFormat.setLenient(true);
 
         String line = null;
 
@@ -46,7 +48,7 @@ public class IntermediateDumpParser {
             t.setTweetId(new Long(line.substring(1)));
 
             line = intermediateDumpReader.readLine();
-            t.setTweetTimestamp(new TweetTimeStamp(line.substring(1)));
+            t.setTweetTimestamp(simpleDateFormat.parse(line.substring(1)));
 
             line = intermediateDumpReader.readLine();
             t.setTweetText(line.substring(1));

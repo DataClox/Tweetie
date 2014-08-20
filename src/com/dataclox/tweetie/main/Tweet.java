@@ -1,6 +1,7 @@
 package com.dataclox.tweetie.main;
 
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * Created by devilo on 19/8/14.
@@ -8,7 +9,7 @@ import java.text.SimpleDateFormat;
 public class Tweet {
 
     String tweetText = null;
-    TweetTimeStamp tweetTimestamp = null;
+    Date tweetTimestamp = null;
     Long tweetId = null;
     Long tweetUserId = null;
     Long tweetInReplyToStatusId = null;
@@ -17,7 +18,7 @@ public class Tweet {
 
     }
 
-    public Tweet(String tweetText, TweetTimeStamp tweetTimestamp, Long tweetId, Long tweetUserId, Long tweetInReplyToStatusId) {
+    public Tweet(String tweetText, Date tweetTimestamp, Long tweetId, Long tweetUserId, Long tweetInReplyToStatusId) {
         this.tweetText = tweetText;
         this.tweetTimestamp = tweetTimestamp;
         this.tweetId = tweetId;
@@ -33,11 +34,11 @@ public class Tweet {
         this.tweetText = tweetText;
     }
 
-    public TweetTimeStamp getTweetTimestamp() {
+    public Date getTweetTimestamp() {
         return tweetTimestamp;
     }
 
-    public void setTweetTimestamp(TweetTimeStamp tweetTimestamp) {
+    public void setTweetTimestamp(Date tweetTimestamp) {
         this.tweetTimestamp = tweetTimestamp;
     }
 
