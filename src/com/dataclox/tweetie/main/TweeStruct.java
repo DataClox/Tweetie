@@ -2,6 +2,7 @@ package com.dataclox.tweetie.main;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.TreeMap;
 
 /**
@@ -17,11 +18,14 @@ public class TweeStruct {
     private TreeMap<Long,Long> parentChildMap = null;
     private HashSet<Long> roots = null;
 
+    TreeMap<Long, LinkedHashSet<Long>> adjacencyList = null;
+
     protected TweeStruct() {
 
         roots = new HashSet<Long>();
         tweetMap = new HashMap<Long, Tweet>();
         parentChildMap = new TreeMap<Long, Long>();
+        adjacencyList = new TreeMap<Long, LinkedHashSet<Long>>();
     }
 
     public static TweeStruct getInstance() {
@@ -57,5 +61,9 @@ public class TweeStruct {
 
     public HashSet<Long> getRoots() {
         return roots;
+    }
+
+    public TreeMap<Long, LinkedHashSet<Long>> getAdjacencyList() {
+        return adjacencyList;
     }
 }

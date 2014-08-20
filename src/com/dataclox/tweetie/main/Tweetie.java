@@ -6,16 +6,26 @@ import com.dataclox.tweetie.parser.DumpParser;
 import com.dataclox.tweetie.parser.IntermediateDumpParser;
 
 import java.io.IOException;
-import java.util.HashSet;
 
 /**
  * Created by devilo on 16/8/14.
  */
 public class Tweetie {
 
-    public void start() {
+    DumpParser dumpParser = null;
+    ConfigParser configParser = null;
+    StatGenerator statGenerator = null;
+    IntermediateDumpParser intermediateDumpParser = null;
 
-        ConfigParser configParser = new ConfigParser();
+    public Tweetie() {
+
+        dumpParser = new DumpParser();
+        configParser = new ConfigParser();
+        statGenerator = new StatGenerator();
+        intermediateDumpParser = new IntermediateDumpParser(IndexConfig.interDump);
+    }
+
+    public void start() {
 
         try {
             configParser.parse();
@@ -33,7 +43,6 @@ public class Tweetie {
 
 
         if( IndexConfig.createIndex == true ) {
-            DumpParser dumpParser = new DumpParser();
 
             try {
                 dumpParser.createIndex();
@@ -49,15 +58,20 @@ public class Tweetie {
 
             System.out.println("Using intermediate file : " + IndexConfig.interDump);
 
-            IntermediateDumpParser intermediateDumpParser = new IntermediateDumpParser(IndexConfig.interDump);
-
             try {
-                intermediateDumpParser.createTweetMap();
+
+                intermediateDumpParser.createTweetStruct();
+                System.out.println("Total roots : " + TweeStruct.getInstance().getAdjacencyList().keySet().size());
+
+                statGenerator.generateConversations();
 
             }
             catch (IOException e) {
                 e.printStackTrace();
             }
+
+
+
 
         }
         else {

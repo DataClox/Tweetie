@@ -30,7 +30,7 @@ public class IntermediateDumpParser {
     }
 
 
-    public void createTweetMap() throws IOException {
+    public void createTweetStruct() throws IOException {
 
         String line = null;
 
@@ -80,7 +80,7 @@ public class IntermediateDumpParser {
         HashMap<Long, Tweet> tweetMap = tweeStruct.getTweetMap();
         TreeMap<Long, Long> parentChildMap = tweeStruct.getParentChildMap();    //Child - Parent
 
-        TreeMap<Long, LinkedHashSet<Long>> adjacencyList = new TreeMap<Long, LinkedHashSet<Long>>();
+        TreeMap<Long, LinkedHashSet<Long>> adjacencyList = tweeStruct.getAdjacencyList();
 
         HashSet<Long> toBeRemoved = new HashSet<Long>();
 
@@ -96,7 +96,7 @@ public class IntermediateDumpParser {
 
         }
 
-        System.out.println("Whose parent were not found in the datase : " + toBeRemoved.size());
+        System.out.println("Whose parent were not found in the dataset : " + toBeRemoved.size());
 
         for( Long id: toBeRemoved ) {
             parentChildMap.remove(id);
@@ -104,8 +104,8 @@ public class IntermediateDumpParser {
         toBeRemoved.clear();
 
 
+        TreeMap<Long,Long> unsortedChildParent = new TreeMap<Long, Long>();
 
-        int count = 0;
         for( Long childId : parentChildMap.keySet() ) {
 
             Long parentId = parentChildMap.get(childId);
@@ -117,15 +117,15 @@ public class IntermediateDumpParser {
                 if( adjacencyList.containsKey(parentId) )
                     adjacencyList.get(parentId).add(childId);
                 else
-                    count++;
+                    unsortedChildParent.put(childId,parentId);
             }
 
         }
 
-        System.out.println("Unsorted count : " + count);
-        System.out.println("Total roots : " + adjacencyList.keySet().size());
+        //System.out.println("Unsorted count : " + unsortedChildParent.size());
+        //System.out.println("Total roots : " + adjacencyList.keySet().size());
 
-        count = 0;
+        int count = 0;
         int max = 0;
 
         for( Long rootId : adjacencyList.keySet()) {
@@ -137,6 +137,6 @@ public class IntermediateDumpParser {
         }
         System.out.println("Total conversations = " + count);
         System.out.println("Max length conversation = " + max);
-
     }
+
 }
