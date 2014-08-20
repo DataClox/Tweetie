@@ -20,5 +20,6 @@ public class IndexConfig {
     public static String convLengthVsFreqFilePath     = null;
 
 
+
     public static String minutesVsFreqFilePath  = null;
 }

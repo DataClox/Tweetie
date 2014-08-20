@@ -62,6 +62,7 @@ public class Tweetie {
             try {
 
                 intermediateDumpParser.createTweetStruct();
+
                 System.out.println("Total roots : " + TweeStruct.getInstance().getAdjacencyList().keySet().size());
 
                 statGenerator.generateConversations();
@@ -69,8 +70,9 @@ public class Tweetie {
                 statGenerator.generateConversationLengthVsFreq();
                 statGenerator.generateMinutesVsFreq();
 
-
                 statGenerator.dumpTweets();
+
+                statGenerator.printConversationTree();
 
 
             }
@@ -80,8 +82,6 @@ public class Tweetie {
             catch (ParseException e) {
                 e.printStackTrace();
             }
-
-
 
 
         }

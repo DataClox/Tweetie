@@ -23,7 +23,6 @@ public class IntermediateDumpParser {
 
     public IntermediateDumpParser(String interDump) {
 
-        System.out.println("Inter dump = " + interDump);
         this.intermediateDumpPath = interDump;
         tweeStruct = TweeStruct.getInstance();
         intermediateFile = new File(this.intermediateDumpPath);

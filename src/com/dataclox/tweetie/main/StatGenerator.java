@@ -67,7 +67,7 @@ public class StatGenerator {
                 }
             }
 
-            long minutes = (tweetMap.get(maxId).getTweetTimestamp().getTime() - tweetMap.get(minId).getTweetTimestamp().getTime())/6000;
+            long minutes = (tweetMap.get(maxId).getTweetTimestamp().getTime() - tweetMap.get(minId).getTweetTimestamp().getTime())/60000;
 
             if( !minutesVsFrequency.containsKey(minutes) )
                 minutesVsFrequency.put(minutes, 1L);
@@ -257,6 +257,49 @@ public class StatGenerator {
         }
 
         fileWriter.close();
+
+    }
+
+    private void printDirectReplies( Long parentId ) throws IOException {
+
+        convFileWriter.write(parentId.toString());
+
+        if( !adjacencyList.containsKey(parentId))
+            return;
+
+        long numOfReplies = adjacencyList.get(parentId).size();
+
+        if(numOfReplies == 0)
+            return;
+
+        convFileWriter.write('(');
+
+        for( Long childId: adjacencyList.get(parentId)) {
+
+            printDirectReplies(childId);
+
+            if( numOfReplies > 1 )
+                convFileWriter.write(',');
+
+            numOfReplies--;
+        }
+        convFileWriter.write(')');
+    }
+
+    public void printConversationTree() throws IOException {
+
+        convFileWriter = new BufferedWriter(new FileWriter(convFile));
+
+        for( Long tweetId : roots ) {
+
+            convFileWriter.write("(");
+            printDirectReplies(tweetId);
+            convFileWriter.write(")");
+            convFileWriter.write('\n');
+        }
+
+
+        convFileWriter.close();
 
     }
 

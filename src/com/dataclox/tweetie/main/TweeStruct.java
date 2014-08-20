@@ -75,4 +75,5 @@ public class TweeStruct {
     public TreeMap<Long, Long> getTweetIdVsUserId() {
         return tweetIdVsUserId;
     }
+
 }
