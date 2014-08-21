@@ -50,7 +50,7 @@ public class IntermediateDumpParser {
             t.setTweetTimestamp(simpleDateFormat.parse(line.substring(1)));
 
             line = intermediateDumpReader.readLine();
-            t.setTweetText(line.substring(1));
+            t.setTweetText(line.trim().substring(1));
 
             line = intermediateDumpReader.readLine();
             t.setTweetUserId(new Long(line.substring(1)));

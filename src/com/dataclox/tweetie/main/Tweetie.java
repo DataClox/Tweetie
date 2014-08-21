@@ -54,7 +54,7 @@ public class Tweetie {
             }
 
         }
-        else if( IndexConfig.useIntermediateIndex == true ) {
+        else if( IndexConfig.createIndex == true || IndexConfig.useIntermediateIndex == true ) {
 
             intermediateDumpParser = new IntermediateDumpParser(IndexConfig.interDump);
             System.out.println("Using intermediate file : " + IndexConfig.interDump);
@@ -70,7 +70,7 @@ public class Tweetie {
                 statGenerator.generateConversationLengthVsFreq();
                 statGenerator.generateMinutesVsFreq();
 
-                statGenerator.dumpTweets();
+                //statGenerator.dumpTweets();
 
                 statGenerator.printConversationTree();
 
@@ -88,6 +88,11 @@ public class Tweetie {
         else {
             System.out.println("Index at INDEX_LOC is used ...");
         }
+
+
+        TweeChat tweeChat = new TweeChat();
+        tweeChat.initialize();
+        tweeChat.start();
 
     }
 

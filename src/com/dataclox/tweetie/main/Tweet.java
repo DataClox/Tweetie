@@ -14,6 +14,8 @@ public class Tweet {
     Long tweetUserId = null;
     Long tweetInReplyToStatusId = null;
 
+    boolean isEnglish = false;
+
     public Tweet() {
 
     }
