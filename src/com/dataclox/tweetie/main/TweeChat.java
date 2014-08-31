@@ -33,6 +33,8 @@ public class TweeChat {
 
     public void start() {
 
+        Random random = new Random();
+
         Scanner scanner = new Scanner(System.in);
 
         while ( true ) {
@@ -41,11 +43,11 @@ public class TweeChat {
             float maxJC = Float.MIN_VALUE;
             float jc;
 
-            System.out.print(">>>");
+            System.out.print(">>> ");
             String humanSay = scanner.nextLine();
 
-            System.out.println("For line : " + humanSay);
-            System.out.println("Set is : " + stringToSet(humanSay.toLowerCase()));
+            //System.out.println("For line : " + humanSay);
+            //System.out.println("Set is : " + stringToSet(humanSay.toLowerCase()));
             HashSet<String> humanSaySet = stringToSet(humanSay.toLowerCase());
 
             HashSet<String> union = new HashSet<String>();
@@ -64,7 +66,7 @@ public class TweeChat {
                 union.addAll(candidateSay);
                 intersection.retainAll(candidateSay);
 
-                jc = ((float) intersection.size() / (float)union.size());
+                jc = ((float)candidateSay.size()) * ((float) intersection.size() / (float)union.size());
 
                 //System.out.println("JC = " + jc);
 
@@ -72,14 +74,18 @@ public class TweeChat {
                     maxJC = jc;
                     maxId = id;
 
-                    System.out.println("maxJC = " + maxJC + " and maxId = " + maxId);
-                    System.out.println("Inter : " + intersection + " and Union : " + union);
+                    //System.out.println("maxJC = " + maxJC + " and maxId = " + maxId);
+                    //System.out.println("Inter : " + intersection + " and Union : " + union);
 
                 }
 
             }
 
 
+            if( maxId == null ) {
+                System.out.println("Okay ... I c");
+                continue;
+            }
 
             Long replyId = 0L;
             LinkedHashSet<Long> possibleReplies = adjacencyList.get(maxId);
@@ -91,7 +97,7 @@ public class TweeChat {
                 Long[] arr = ((Long[]) possibleReplies.toArray());
                 int size = arr.length;
 
-                replyId = arr[((int) (Math.random() * size))];
+                replyId = arr[((random.nextInt() % size) + (random.nextInt() % size)) % arr.length];
                 System.out.println(tweetIdVsTweetText.get(replyId));
             }
             else {
@@ -133,7 +139,7 @@ public class TweeChat {
 
         }
 
-        System.out.println("Total english tweets in conversation : " + tweetIdVsTweetText.size());
+        //System.out.println("Total english tweets in conversation : " + tweetIdVsTweetText.size());
 
     }
 
